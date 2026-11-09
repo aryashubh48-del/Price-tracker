@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Fermented Yeast Protein",
+    "site": "blinkit",
+    "url": "https://blinkit.com/REPLACE-WITH-REAL-PRODUCT-LINK",
+    "target": 1800,
+    "selector": ""
+  },
+  {
+    "name": "Second Product",
+    "site": "zepto",
+    "url": "https://www.zepto.com/REPLACE-WITH-REAL-PRODUCT-LINK",
+    "target": 500,
+    "selector": ""
+  }
+]
