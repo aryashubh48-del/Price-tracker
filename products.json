@@ -2,15 +2,15 @@
   {
     "name": "Fermented Yeast Protein",
     "site": "blinkit",
-    "url": "https://blinkit.com/REPLACE-WITH-REAL-PRODUCT-LINK",
-    "target": 1800,
+    "url": "https://blinkit.com/prn/superyou-fermented-yeast-protein-chocolate/prid/696713",
+    "target": 2500,
     "selector": ""
   },
   {
-    "name": "Second Product",
-    "site": "zepto",
-    "url": "https://www.zepto.com/REPLACE-WITH-REAL-PRODUCT-LINK",
-    "target": 500,
+    "name": "peanut butter",
+    "site": "instamart",
+    "url": "https://instamart.in/p/pintola-all-natural-peanut-butter-crunchy-unsweetened-protein-gluten-free-vegan-cholesterol-free-A31NCMM9W7",
+    "target": 400,
     "selector": ""
   }
 ]
