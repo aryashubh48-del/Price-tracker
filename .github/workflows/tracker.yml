@@ -1,0 +1,52 @@
+name: Quick Commerce Price Tracker
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'      # every 15 min (GitHub may delay this)
+  workflow_dispatch:             # manual "Run workflow" button
+  push:
+    paths:
+      - 'products.json'          # re-run instantly when you edit products
+
+permissions:
+  contents: write                # needed to save state.json back to the repo
+
+concurrency:
+  group: price-tracker           # never run two at the same time
+  cancel-in-progress: false
+
+jobs:
+  check-price:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tracker
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python tracker.py
+
+      - name: Save state (avoid duplicate alerts)
+        if: always()
+        run: |
+          git config user.name "price-tracker-bot"
+          git config user.email "price-tracker-bot@users.noreply.github.com"
+          git add state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update tracker state"
+            git pull --rebase
+            git push
+          fi
